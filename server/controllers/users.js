@@ -6,7 +6,7 @@ const login = async (req, res) => {
     // validate user
     const validUser = await User.findOne({ username: req.body.username });
     if (!validUser) {
-      return res.status(400).send({ error: 'Wrong Username or password' });
+      return res.status(400).send({ error: 'Wrong username or password' });
     }
 
     // validate password
@@ -15,7 +15,7 @@ const login = async (req, res) => {
       validUser.password,
     );
     if (!validPassword) {
-      return res.status(400).send({ error: 'Wrong username or Password' });
+      return res.status(400).send({ error: 'Wrong username or password' });
     }
 
     return res.status(200).send({ data: { username: validUser.username } });
