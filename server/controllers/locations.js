@@ -60,7 +60,7 @@ const deleteLocation = async (req, res) => {
   }
 };
 
-const deleteAllloctions = async (req, res) => {
+const deleteAllLocations = async (req, res) => {
   try {
     // delete all loctions
     const result = await Location.deleteMany({});
@@ -71,5 +71,5 @@ const deleteAllloctions = async (req, res) => {
 };
 
 module.exports = {
-  getLocations, postLocation, editLocation, deleteLocation, deleteAllloctions,
+  getLocations, postLocation, editLocation, deleteLocation, deleteAllLocations,
 };

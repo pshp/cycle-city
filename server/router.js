@@ -9,11 +9,11 @@ router.post('/users/login', userControllers.login);
 // router.post("/users/logout", controllers.logout);
 
 router.get('/locations', locationControllers.getLocations);
-router.post('/locations', locationControllers.postLocations);
+router.post('/locations', locationControllers.postLocation);
 
-router.patch('/locations/:id', locationControllers.editLocations);
+router.patch('/locations/:id', locationControllers.editLocation);
 
-router.delete('/locations/:id', locationControllers.deleteLocations);
+router.delete('/locations/:id', locationControllers.deleteLocation);
 router.delete('/locations', locationControllers.deleteAllLocations);
 
 module.exports = { router };
