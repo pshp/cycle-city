@@ -10,21 +10,38 @@ export default function Register() {
   return (
     <div className="signup-page">
       <h1>Cycle City</h1>
-      <form onSubmit={handleSumbit} className="user-form signup-form">
+      <form className="signup-form" onSubmit={handleSumbit}>
+
         <h2>Sign Up</h2>
-        <p>First name *</p>
-        <input className="user-input" type="text" />
-        <p>Last Name *</p>
-        <input className="user-input" type="text" />
-        <p>Email *</p>
-        <input className="user-input" type="text" />
-        <p>Password *</p>
-        <input className="user-input" type="text" />
+
+        <label htmlFor="first-name">
+          First name *
+          <input className="user-input" id="first-name" name="first-name" type="text" />
+        </label>
+
+        <label htmlFor="last-name">
+          Last Name *
+          <input className="user-input" id="last-name" name="last-name" type="text" />
+        </label>
+
+        <label htmlFor="email">
+          Email *
+          <input className="user-input" id="email" name="email" type="text" />
+        </label>
+
+        <label htmlFor="password">
+          Password *
+          <input className="user-input" id="password" name="password" type="text" />
+        </label>
+
         <button className="submit-btn" type="submit">Sign Up</button>
+
       </form>
-      Already have an account?
-      {' '}
-      <span><Link to="/login">Log in</Link></span>
+      <p>
+        Already have an account?
+        {' '}
+        <Link className="link" to="/login">Log in</Link>
+      </p>
     </div>
   );
 }
