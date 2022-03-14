@@ -1,0 +1,30 @@
+.form-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  line-height: 10px;
+}
+
+.form-input:focus-within {
+  font-weight: bold;
+}
+
+.form-input-field {
+  font-size: 20px;
+  border: solid rgb(204, 201, 201) 2px;
+  width: 100%;
+  border-radius: 8px;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.form-input-field:focus {
+  outline: none;
+}
+
+.form-input-field:focus-visible {
+  border: 3px #fc5200 solid;
+}
+
+
+

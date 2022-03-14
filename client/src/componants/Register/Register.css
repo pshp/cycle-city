@@ -10,39 +10,6 @@
   margin: 0 auto 0;
 }
 
-.user-input {
-  margin:0;
-  font-size: 20px;
-  border: solid rgb(204, 201, 201) 2px;
-  width: 100%;
-  border-radius: 8px;
-  height: 50px;
-  box-sizing: border-box;
-}
-
-.user-input:focus {
-  outline: none;
-}
-
-.user-input:focus-visible {
-  border: 3px #fc5200 solid;
-}
-
-label:focus-within {
-  font-weight: bold;
-}
-
-label {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-  line-height: 40px;
-}
-
-input {
-  height: 20px;
-  margin-top: 50px;
-}
 
 
 .submit-btn {

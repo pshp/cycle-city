@@ -1,6 +1,7 @@
 import React from 'react';
 import './Register.css';
 import { Link } from 'react-router-dom';
+import FormInput from '../FormInput/FormInput';
 
 export default function Register() {
   const handleSumbit = (e) => {
@@ -14,25 +15,29 @@ export default function Register() {
 
         <h2>Sign Up</h2>
 
-        <label htmlFor="first-name">
-          First name *
-          <input className="user-input" id="first-name" name="first-name" type="text" />
-        </label>
+        <FormInput
+          id="first-name"
+          label="First name *"
+          type="text"
+        />
 
-        <label htmlFor="last-name">
-          Last Name *
-          <input className="user-input" id="last-name" name="last-name" type="text" />
-        </label>
+        <FormInput
+          id="last-name"
+          label="Last name *"
+          type="text"
+        />
 
-        <label htmlFor="email">
-          Email *
-          <input className="user-input" id="email" name="email" type="text" />
-        </label>
+        <FormInput
+          id="email"
+          label="Email *"
+          type="text"
+        />
 
-        <label htmlFor="password">
-          Password *
-          <input className="user-input" id="password" name="password" type="text" />
-        </label>
+        <FormInput
+          id="password"
+          label="Password *"
+          type="text"
+        />
 
         <button className="submit-btn" type="submit">Sign Up</button>
 
