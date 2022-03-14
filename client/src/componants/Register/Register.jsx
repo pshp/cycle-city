@@ -2,6 +2,7 @@ import React from 'react';
 import './Register.css';
 import { Link } from 'react-router-dom';
 import FormInput from '../FormInput/FormInput';
+import SubmitButton from '../SubmitButton/SubmitButton';
 
 export default function Register() {
   const handleSumbit = (e) => {
@@ -36,10 +37,10 @@ export default function Register() {
         <FormInput
           id="password"
           label="Password *"
-          type="text"
+          type="password"
         />
 
-        <button className="submit-btn" type="submit">Sign Up</button>
+        <SubmitButton text="Sign up" />
 
       </form>
       <p>
