@@ -5,10 +5,10 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
-import Login from '../Login/Login';
+import Login from '../UserForm/Login';
 import Logout from '../Logout/Logout';
 import Map from '../Map/Map';
-import Register from '../Register/Register';
+import Register from '../UserForm/Register';
 
 export default function Nav() {
   return (

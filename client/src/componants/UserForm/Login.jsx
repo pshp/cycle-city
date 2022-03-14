@@ -1,39 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import './Register.css';
+import './UserForm.css';
 import { Link } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import FormInput from '../FormInput/FormInput';
 import SubmitButton from '../SubmitButton/SubmitButton';
 
-export default function Register() {
+export default function Login() {
   const methods = useForm();
 
   const onSubmit = (data) => console.log(data);
 
   return (
-    <div className="signup-page">
+    <div className="user-form-page">
       <h1>Cycle City</h1>
 
       <FormProvider {...methods}>
         <form
-          className="signup-form"
+          className="user-form"
           onSubmit={methods.handleSubmit(onSubmit)}
         >
 
-          <h2>Sign Up</h2>
-
-          <FormInput
-            id="first-name"
-            label="First name *"
-            type="text"
-          />
-
-          <FormInput
-            id="last-name"
-            label="Last name *"
-            type="text"
-          />
+          <h2>Log in</h2>
 
           <FormInput
             id="email"
@@ -47,15 +35,15 @@ export default function Register() {
             type="password"
           />
 
-          <SubmitButton type="submit" text="Sign up" />
+          <SubmitButton type="submit" text="Log in" />
 
         </form>
       </FormProvider>
 
       <p>
-        Already have an account?
+        Don't have an account?
         {' '}
-        <Link className="link" to="/login">Log in</Link>
+        <Link className="link" to="/register">Sign up</Link>
       </p>
     </div>
   );
