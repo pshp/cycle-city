@@ -1,3 +1,6 @@
 body {
   margin:0;
+  font-family: 'Lato', sans-serif;
+  /* font-family: 'Hubballi', cursive; */
+  box-sizing: border-box;
 }

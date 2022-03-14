@@ -8,11 +8,10 @@ export default function Register() {
   };
 
   return (
-    <div className="Register">
+    <div className="signup-page">
       <h1>Cycle City</h1>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSumbit} className="signup">
-        <input type="text" />
+      <form onSubmit={handleSumbit} className="user-form signup-form">
+        <h2>Sign Up</h2>
         <p>First name *</p>
         <input type="text" />
         <p>Last Name *</p>
@@ -21,7 +20,7 @@ export default function Register() {
         <input type="text" />
         <p>Password *</p>
         <input type="text" />
-        <button className="sumbit-btn" type="submit">Sign Up</button>
+        <button className="submit-btn" type="submit">Sign Up</button>
       </form>
       Already have an account?
       {' '}
