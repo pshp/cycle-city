@@ -41,7 +41,7 @@ export default function Login() {
       </FormProvider>
 
       <p>
-        Don't have an account?
+        Don&apos;t have an account?
         {' '}
         <Link className="link" to="/register">Sign up</Link>
       </p>
