@@ -1,0 +1,8 @@
+.login-btn {
+  font-weight: 700;
+    color: #242428;
+    background-color: #fff;
+    border-color: #dfdfe8;
+    cursor: pointer;
+    border-radius: 4px;
+}

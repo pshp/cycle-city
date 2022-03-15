@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
-import HamburgerMenu from './componants/HamburgerMenu/HamburgerMenu';
+import { BrowserRouter } from 'react-router-dom';
+import Navbar from './componants/Navbar/Navbar';
+import Dashboard from './componants/Dashboard/Dashboard';
 
 export default function App() {
   return (
     <div className="App">
-      this is app
+      <BrowserRouter>
+        <Dashboard />
+        <Navbar />
+      </BrowserRouter>
     </div>
   );
 }

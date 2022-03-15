@@ -4,7 +4,7 @@ import './UserForm.css';
 import { Link } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import FormInput from '../FormInput/FormInput';
-import SubmitButton from '../SubmitButton/SubmitButton';
+import SubmitButton from '../Buttons/SubmitButton';
 
 export default function Login() {
   const methods = useForm();
@@ -12,7 +12,7 @@ export default function Login() {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <div className="user-form-page">
+    <div className="user-form-container">
       <h1>Cycle City</h1>
 
       <FormProvider {...methods}>
