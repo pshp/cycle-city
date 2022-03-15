@@ -1,0 +1,29 @@
+a {
+  text-decoration: none;
+}
+
+.btn-small{
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  padding:6px 16px;
+}
+
+.login-btn-small {
+    color: #242428;
+    background-color: white;
+    border: 1px solid rgb(241, 240, 240);
+}
+
+.login-btn-small:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.register-btn-small {
+  color: white;
+  background-color: #fc5200;;
+}
+
+.register-btn-small:hover {
+  background-color: #b93e01;;
+}
