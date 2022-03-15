@@ -72,7 +72,8 @@ export default function Register() {
           />
 
           <SubmitButton type="submit" text="Sign up" />
-
+          {correct && <p className="correct">Account created. Please log in</p>}
+          {error && <p className="error">Something went wrong...</p>}
         </form>
       </FormProvider>
 
