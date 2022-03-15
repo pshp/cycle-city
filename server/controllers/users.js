@@ -3,10 +3,10 @@ const User = require('../models/User');
 
 const login = async (req, res) => {
   try {
-    // validate user
-    const validUser = await User.findOne({ username: req.body.username });
+    // validate email
+    const validUser = await User.findOne({ email: req.body.email });
     if (!validUser) {
-      return res.status(400).send({ error: 'Wrong username or password' });
+      return res.status(400).send({ error: 'Wrong email or password' });
     }
 
     // validate password
@@ -15,10 +15,10 @@ const login = async (req, res) => {
       validUser.password,
     );
     if (!validPassword) {
-      return res.status(400).send({ error: 'Wrong username or password' });
+      return res.status(400).send({ error: 'Wrong email or password' });
     }
 
-    return res.status(200).send({ data: { username: validUser.username } });
+    return res.status(200).send({ data: { email: validUser.email } });
   } catch (e) {
     return res.status(500).send({ error: e._message });
   }
@@ -26,12 +26,13 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    // Check is username or email exists
-    const userExists = await User.findOne({
-      username: req.body.username,
+    // Check if email exists
+    const emailExists = await User.findOne({
+      email: req.body.email,
     }).exec();
-    if (userExists) {
-      return res.status(400).send({ error: 'username is taken' });
+
+    if (emailExists) {
+      return res.status(400).send({ error: 'Email is taken' });
     }
 
     // generate hashed pw
@@ -40,9 +41,12 @@ const register = async (req, res) => {
 
     // create new user
     const body = {
-      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       password: hashedPassword,
+      email: req.body.email,
     };
+
     const user = await User.create(body);
 
     return res.status(200).send({ data: user._id });

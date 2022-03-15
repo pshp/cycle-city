@@ -1,15 +1,39 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState } from 'react';
 import './UserForm.css';
 import { Link } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import FormInput from '../FormInput/FormInput';
 import SubmitButton from '../Buttons/SubmitButton';
+import { registerUser } from '../../services/api-service';
 
 export default function Register() {
+  const [correct, setCorrect] = useState(false);
+  const [error, setError] = useState(false);
+
   const methods = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const body = {
+      firstName: data.firstName,
+      lastName: data.firstName,
+      email: data.email,
+      password: data.password,
+    };
+
+    registerUser(body)
+      .then((res) => {
+        console.log(res);
+        if (res.error) throw new Error(res.error);
+        setCorrect(true);
+        setError(false);
+      })
+      .catch((err) => {
+        console.log('ERROR', err);
+        setCorrect(false);
+        setError(true);
+      });
+  };
 
   return (
     <div className="user-form-container">
@@ -24,13 +48,13 @@ export default function Register() {
           <h2>Sign up</h2>
 
           <FormInput
-            id="first-name"
+            id="firstName"
             label="First name *"
             type="text"
           />
 
           <FormInput
-            id="last-name"
+            id="lastName"
             label="Last name *"
             type="text"
           />
