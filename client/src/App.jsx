@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import {
-  Redirect,
-  BrowserRouter,
-} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Navbar from './componants/Navbar/Navbar';
 import Dashboard from './componants/Dashboard/Dashboard';
@@ -22,9 +19,9 @@ export default function App() {
       .catch((e) => console.log(e));
   }, []);
 
-  // useEffect(() => {
-  //   console.log(locationsArray);
-  // }, [locationsArray]);
+  useEffect(() => {
+    console.log(locationsArray);
+  }, [locationsArray]);
 
   const handleLoginSubmit = (username) => {
     userStorage.setItem('user', username);
@@ -37,10 +34,11 @@ export default function App() {
   };
 
   const context = useMemo(() => ({
+    locationsArray,
     handleLoginSubmit,
     handleLogout,
     currentUser,
-  }), [currentUser]);
+  }), [currentUser, locationsArray]);
 
   return (
     <UserContext.Provider value={context}>
