@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 // import Room from '@mui/icons-material/Room';
 // import L from 'leaflet';
 import PinList from '../PinList/PinList';
-import Pin from '../Pin/Pin';
+// import Pin from '../Pin/Pin';
 import PinNew from '../Pin/PinNew';
 // import PinSvg from '../../assets/pin.svg';
 
@@ -19,11 +19,16 @@ export default function BaseMap() {
 
   const position = [52.51051, 13.46104];
 
-  const onClick = (e) => {
+  const addNewPin = (e) => {
     setNewPin(false);
     setNewPinLng(e.latlng.lng);
     setNewPinLat(e.latlng.lat);
     setNewPin(true);
+    // console.log(e.target.openPop);
+  };
+
+  const cancelAddNewPin = (e) => {
+    setNewPin(false);
     // console.log(e.target.openPop);
   };
 
@@ -34,7 +39,7 @@ export default function BaseMap() {
       zoom={13}
       whenCreated={(map) => {
         setMyMap(map);
-        map.on('click', onClick);
+        map.on('click', addNewPin);
       }}
     >
       <TileLayer
@@ -48,6 +53,7 @@ export default function BaseMap() {
           map={myMap}
           lat={newPinLat}
           lng={newPinLng}
+          cancelAddNewPin={cancelAddNewPin}
         />
       )}
     </MapContainer>
