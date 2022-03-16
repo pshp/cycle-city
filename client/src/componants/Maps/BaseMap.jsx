@@ -10,8 +10,20 @@ import PinList from '../PinList/PinList';
 export default function BaseMap() {
   const position = [52.51051, 13.46104];
 
+  const onClick = (e) => {
+    console.log(e.latlng);
+  };
+
   return (
-    <MapContainer className="map-container " center={position} zoom={13} scrollWheelZoom={false}>
+    <MapContainer
+      className="map-container "
+      center={position}
+      zoom={13}
+      scrollWheelZoom={false}
+      whenCreated={(map) => {
+        map.on('click', onClick);
+      }}
+    >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
