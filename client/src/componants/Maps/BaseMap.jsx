@@ -10,16 +10,21 @@ import PinNew from '../Pin/PinNew';
 // import PinSvg from '../../assets/pin.svg';
 
 export default function BaseMap() {
+  const [refReady, setRefReady] = useState(false);
+
   const [newPin, setNewPin] = useState(null);
   const [newPinLat, setNewPinLat] = useState(null);
   const [newPinLng, setNewPinLng] = useState(null);
+  const [myMap, setMyMap] = useState();
 
   const position = [52.51051, 13.46104];
 
   const onClick = (e) => {
+    setNewPin(false);
     setNewPinLng(e.latlng.lng);
     setNewPinLat(e.latlng.lat);
     setNewPin(true);
+    // console.log(e.target.openPop);
   };
 
   return (
@@ -28,6 +33,7 @@ export default function BaseMap() {
       center={position}
       zoom={13}
       whenCreated={(map) => {
+        setMyMap(map);
         map.on('click', onClick);
       }}
     >
@@ -37,7 +43,12 @@ export default function BaseMap() {
       />
       <PinList />
       {newPin && (
-        <PinNew lat={newPinLat} lng={newPinLng} />
+        <PinNew
+          isActive
+          map={myMap}
+          lat={newPinLat}
+          lng={newPinLng}
+        />
       )}
     </MapContainer>
 

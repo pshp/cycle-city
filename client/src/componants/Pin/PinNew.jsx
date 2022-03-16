@@ -1,9 +1,22 @@
-import React, { useContext } from 'react';
+import React, {
+  useContext, useState, useRef, useEffect,
+} from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import UserContext from '../../contexts/UserContext';
 
-export default function PinNew({ lat, lng }) {
+export default function PinNew({
+  map, isActive, lat, lng,
+}) {
+  const [refReady, setRefReady] = useState(false);
+  const popupRef = useRef();
+
+  useEffect(() => {
+    if (refReady && isActive) {
+      popupRef.current.openOn(map);
+    }
+  }, [isActive, refReady, map]);
+
   const position = [lat, lng];
   // const myCustomColour = '#583470';
   // const markerHtmlStyles = `background-color: ${myCustomColour};`;
@@ -23,8 +36,21 @@ export default function PinNew({ lat, lng }) {
   });
 
   return (
-    <Marker icon={myIcon} position={position}>
-      <Popup>
+    <Marker
+      icon={myIcon}
+      position={position}
+      // bindPopup={(map) => {
+      //   console.log('a');
+      //   // map.openPopup();
+      // }}
+    >
+      <Popup
+        className="customPopup"
+        ref={(r) => {
+          popupRef.current = r;
+          setRefReady(true);
+        }}
+      >
         title goes here
         {/* {title} */}
         <br />
