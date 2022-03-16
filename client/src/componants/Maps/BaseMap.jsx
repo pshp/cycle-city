@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './BaseMap.css';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -7,30 +7,17 @@ import 'leaflet/dist/leaflet.css';
 import PinList from '../PinList/PinList';
 // import Pin from '../Pin/Pin';
 import PinNew from '../Pin/PinNew';
+import UserContext from '../../contexts/UserContext';
 // import PinSvg from '../../assets/pin.svg';
 
 export default function BaseMap() {
-  const [refReady, setRefReady] = useState(false);
+  const {
+    handleAddNewPin, newPin, newPinLat, newPinLng,
+  } = useContext(UserContext);
 
-  const [newPin, setNewPin] = useState(null);
-  const [newPinLat, setNewPinLat] = useState(null);
-  const [newPinLng, setNewPinLng] = useState(null);
   const [myMap, setMyMap] = useState();
 
   const position = [52.51051, 13.46104];
-
-  const addNewPin = (e) => {
-    setNewPin(false);
-    setNewPinLng(e.latlng.lng);
-    setNewPinLat(e.latlng.lat);
-    setNewPin(true);
-    // console.log(e.target.openPop);
-  };
-
-  const cancelAddNewPin = (e) => {
-    setNewPin(false);
-    // console.log(e.target.openPop);
-  };
 
   return (
     <MapContainer
@@ -39,7 +26,7 @@ export default function BaseMap() {
       zoom={13}
       whenCreated={(map) => {
         setMyMap(map);
-        map.on('click', addNewPin);
+        map.on('click', handleAddNewPin);
       }}
     >
       <TileLayer
@@ -53,7 +40,6 @@ export default function BaseMap() {
           map={myMap}
           lat={newPinLat}
           lng={newPinLng}
-          cancelAddNewPin={cancelAddNewPin}
         />
       )}
     </MapContainer>

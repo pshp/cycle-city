@@ -5,8 +5,8 @@ const LocationSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
-      min: 5,
-      max: 20,
+      min: 3,
+      max: 50,
     },
     latitude: {
       type: Number,

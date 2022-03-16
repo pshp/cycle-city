@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Pin from '../Pin/Pin';
 import UserContext from '../../contexts/UserContext';
 

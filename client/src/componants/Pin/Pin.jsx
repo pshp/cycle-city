@@ -3,7 +3,7 @@ import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import UserContext from '../../contexts/UserContext';
 
-export default function Pin({ pinId }) {
+export default function Pin({ pinId, cancelNewPin }) {
   const { locationsArray } = useContext(UserContext);
 
   const {
@@ -17,7 +17,7 @@ export default function Pin({ pinId }) {
   const myIcon = L.divIcon({
     iconSize: [26, 26],
     iconAnchor: [13, 26],
-    popupAnchor: [0, -32],
+    popupAnchor: [0, -5],
     html: `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
        viewBox="0 0 492.452 492.452" style="enable-background:new 0 0 492.452 492.452;" xml:space="preserve">
     <path id="XMLID_152_" d="M246.181,0C127.095,0,59.533,102.676,84.72,211.82c17.938,77.722,126.259,280.631,161.462,280.631
@@ -30,7 +30,7 @@ export default function Pin({ pinId }) {
 
   return (
     <Marker icon={myIcon} position={position}>
-      <Popup>
+      <Popup cancelNewPin={cancelNewPin} pinId={pinId}>
         {title}
         <br />
         {description}

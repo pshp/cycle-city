@@ -19,11 +19,17 @@ const postLocation = async (req, res) => {
       latitude: req.body.latitude,
       longitude: req.body.longitude,
       description: req.body.description,
-      rating: req.body.rating,
+      // rating: req.body.rating,
     };
+    console.log('here', body);
+
     const response = await Location.create(body);
+    console.log('now');
+
     res.status(201).send(response);
   } catch (e) {
+    console.log('fucking error', e);
+
     res.status(500).send(e);
   }
 };

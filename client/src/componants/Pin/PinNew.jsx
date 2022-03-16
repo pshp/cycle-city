@@ -1,9 +1,6 @@
-import React, {
-  useContext, useState, useRef, useEffect,
-} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import UserContext from '../../contexts/UserContext';
 import InfoBoxEdit from './InfoBoxEdit';
 
 export default function PinNew({

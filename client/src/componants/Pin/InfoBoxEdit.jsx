@@ -1,15 +1,21 @@
-import React, {
-  useContext, useState, useRef, useEffect,
-} from 'react';
-import { Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
+import React, { useContext, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import UserContext from '../../contexts/UserContext';
 import './Pin.css';
 
 export default function InfoBoxEdit({ title, description }) {
-  const thisTitle = title || '';
-  const thisDesc = description || '';
+  const { handleSubmitNewPin } = useContext(UserContext);
+
+  const [thisTitle, setThisTitle] = useState(title || '');
+  const [thisDesc, setThisDesc] = useState(description || '');
+
+  const onTitleChange = (e) => {
+    setThisTitle(e.target.value);
+  };
+
+  const onDescChange = (e) => {
+    setThisDesc(e.target.value);
+  };
 
   // const [refReady, setRefReady] = useState(false);
 
@@ -21,7 +27,7 @@ export default function InfoBoxEdit({ title, description }) {
   return (
     <form
       className="edit-location-popup"
-    // onSubmit={(e) => handleSubmit(e)}
+      onSubmit={(e) => handleSubmitNewPin(e, thisTitle, thisDesc)}
     >
       <CloseIcon
         className="icon-btns icon-btn close-btn"
@@ -33,17 +39,18 @@ export default function InfoBoxEdit({ title, description }) {
       <input
         className="location-input"
         name="title"
-        placeholder="Enter a title..."
+        // placeholder="Enter a title..."
         value={thisTitle}
+        onChange={onTitleChange}
 
       />
       <p className="label">Description</p>
       <textarea
         className="location-input"
         name="description"
-        placeholder="Say something about this place..."
+        // placeholder="Say something about this place..."
         value={thisDesc}
-        // onChange={(e) => handleDescChange(e.target.value)}
+        onChange={onDescChange}
       />
       <button type="submit" className="small-submit-btn">
         Add Pin
