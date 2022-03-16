@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './BaseMap.css';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 // import Room from '@mui/icons-material/Room';
 // import L from 'leaflet';
 import PinList from '../PinList/PinList';
+import Pin from '../Pin/Pin';
+import PinNew from '../Pin/PinNew';
 // import PinSvg from '../../assets/pin.svg';
 
 export default function BaseMap() {
+  const [newPin, setNewPin] = useState(null);
+  const [newPinLat, setNewPinLat] = useState(null);
+  const [newPinLng, setNewPinLng] = useState(null);
+
   const position = [52.51051, 13.46104];
 
   const onClick = (e) => {
-    console.log(e.latlng);
+    setNewPinLng(e.latlng.lng);
+    setNewPinLat(e.latlng.lat);
+    setNewPin(true);
   };
 
   return (
@@ -19,7 +27,6 @@ export default function BaseMap() {
       className="map-container "
       center={position}
       zoom={13}
-      scrollWheelZoom={false}
       whenCreated={(map) => {
         map.on('click', onClick);
       }}
@@ -29,6 +36,9 @@ export default function BaseMap() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <PinList />
+      {newPin && (
+        <PinNew lat={newPinLat} lng={newPinLng} />
+      )}
     </MapContainer>
 
   );
