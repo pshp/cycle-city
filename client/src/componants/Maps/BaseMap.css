@@ -1,4 +1,5 @@
-.Map {
+/* @import '~leaflet/dist/leaflet.css'; */
+.map-container {
   background-color: rgb(199, 137, 199);
   width:100%;
   height:100%;

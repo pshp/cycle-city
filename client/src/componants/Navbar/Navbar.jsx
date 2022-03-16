@@ -11,28 +11,35 @@ export default function HamburgerMenu() {
 
   return (
     <div className="Navbar">
+      <div className="navbar-element">
+        <Link to="/">
+          <MapIcon className="navbar-icon" fontSize="large" />
+        </Link>
+      </div>
 
-      <Link to="/">
-        <MapIcon className="navbar-icon" fontSize="large" />
-      </Link>
+      <div className="navbar-element" />
 
-      {!currentUser && (
+      <div className="navbar-element" />
+
+      <div className="navbar-element">
+        {!currentUser && (
         <>
           <Link to="/login">
             <LoginRegBtn type="login" />
           </Link>
 
-          <Link to="/register">
+          {/* <Link to="/register">
             <LoginRegBtn type="register" />
-          </Link>
+          </Link> */}
         </>
-      )}
+        )}
 
-      {currentUser && (
-      <Link to="/">
-        <LogoutIcon onClick={handleLogout} className="navbar-icon" fontSize="large" />
-      </Link>
-      )}
+        {currentUser && (
+        <Link to="/">
+          <LogoutIcon onClick={handleLogout} className="navbar-icon" fontSize="large" />
+        </Link>
+        )}
+      </div>
     </div>
   );
 }

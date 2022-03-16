@@ -7,16 +7,19 @@ import {
 } from 'react-router-dom';
 import Login from '../UserForm/Login';
 import Logout from '../Logout/Logout';
-import Map from '../Map/Map';
+import Map from '../Map/BaseMap';
 import Register from '../UserForm/Register';
 
 export default function Nav() {
   return (
     <Router>
       <div>
+        <div>
+           <Link to="/">Map</Link>
+        </div>
         <ul>
           <li>
-            <Link to="/">Map</Link>
+
           </li>
           <li>
             <Link to="/login">login</Link>

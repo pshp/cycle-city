@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import {
+  Redirect,
+  BrowserRouter,
+} from 'react-router-dom';
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
 import Navbar from './componants/Navbar/Navbar';
 import Dashboard from './componants/Dashboard/Dashboard';
 import UserContext from './contexts/UserContext';
@@ -26,9 +29,6 @@ export default function App() {
   const handleLoginSubmit = (username) => {
     userStorage.setItem('user', username);
     setCurrentUser(username);
-    // setTimeout(() => {
-    //   setShowLogin(false);
-    // }, 1000);
   };
 
   const handleLogout = () => {
@@ -43,17 +43,13 @@ export default function App() {
   }), [currentUser]);
 
   return (
-    <UserContext.Provider
-      value={context}
-    >
+    <UserContext.Provider value={context}>
       <div className="App">
         <BrowserRouter>
           <Dashboard />
           <Navbar />
         </BrowserRouter>
       </div>
-
     </UserContext.Provider>
-
   );
 }
