@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import InfoBoxEdit from '../PopupBox/PopupBoxEdit';
+import PopupBoxEdit from '../PopupBox/PopupBoxEdit';
 
 export default function PinNew({
   myMap, isActive, lat, lng,
@@ -16,8 +16,6 @@ export default function PinNew({
   }, [isActive, refReady, myMap]);
 
   const position = [lat, lng];
-  // const myCustomColour = '#583470';
-  // const markerHtmlStyles = `background-color: ${myCustomColour};`;
 
   const myIcon = L.divIcon({
     iconSize: [26, 26],
@@ -46,7 +44,7 @@ export default function PinNew({
           setRefReady(true);
         }}
       >
-        <InfoBoxEdit />
+        <PopupBoxEdit />
 
       </Popup>
     </Marker>

@@ -5,13 +5,16 @@ import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import UserContext from '../../../contexts/UserContext';
 import './Pin.css';
+import PopupBox from '../PopupBox/PopupBox';
+import PopupBoxEdit from '../PopupBox/PopupBoxEdit';
 
 function Pin({
   title,
   desc,
+  username,
   lat,
   lng,
-  username,
+
   pinId,
   myMap,
   isActive,
@@ -58,11 +61,12 @@ function Pin({
         }}
       >
 
-        {title}
-        <br />
-        {desc}
-        <br />
-        {username}
+        <PopupBox
+          pinId={pinId}
+          title={title}
+          desc={desc}
+          username={username}
+        />
       </Popup>
     </Marker>
   );

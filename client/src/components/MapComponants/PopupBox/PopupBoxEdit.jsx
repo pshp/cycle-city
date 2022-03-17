@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import UserContext from '../../../contexts/UserContext';
 import './PopupBox.css';
 
-export default function InfoBoxEdit({ title, description }) {
+export default function PopupBoxEdit({ title, description }) {
   const { handleSubmitNewPin, handleCancelNewPin } = useContext(UserContext);
 
   const [thisTitle, setThisTitle] = useState(title || '');
@@ -27,7 +27,7 @@ export default function InfoBoxEdit({ title, description }) {
         className="icon-btns icon-btn close-btn"
         onClick={handleCancelNewPin}
       />
-      <p className="label">Title</p>
+      <p className="infobox-label">Title</p>
       <input
         autoFocus
         className="location-input"
@@ -37,7 +37,7 @@ export default function InfoBoxEdit({ title, description }) {
         onChange={onTitleChange}
 
       />
-      <p className="label">Description</p>
+      <p className="infobox-label">Description</p>
       <textarea
         className="location-input"
         name="description"
