@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Navbar from './componants/Navbar/Navbar';
-import Dashboard from './componants/Dashboard/Dashboard';
+import Navbar from './components/Navbar/Navbar';
+import Dashboard from './components/Dashboard/Dashboard';
 import UserContext from './contexts/UserContext';
 import { getLocations, postLocation } from './services/api-service';
 
@@ -15,6 +15,7 @@ export default function App() {
   const [newPinLat, setNewPinLat] = useState(null);
   const [newPinLng, setNewPinLng] = useState(null);
   const [newPinId, setNewPinId] = useState(null);
+
   useEffect(() => {
     getLocations()
       .then((locations) => {
@@ -66,6 +67,13 @@ export default function App() {
       .catch((error) => console.log(error));
   };
 
+  const handleDeletePin = () => {
+
+  };
+  const handleEditPin = () => {
+
+  };
+
   const context = useMemo(() => ({
     locationsArray,
     newPin,
@@ -74,6 +82,8 @@ export default function App() {
     handleAddNewPin,
     handleCancelNewPin,
     handleSubmitNewPin,
+    handleDeletePin,
+    handleEditPin,
     currentUser,
     newPinLat,
     newPinLng,

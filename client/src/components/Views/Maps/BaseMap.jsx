@@ -4,10 +4,10 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 // import Room from '@mui/icons-material/Room';
 // import L from 'leaflet';
-import PinList from '../PinList/PinList';
+import PinList from '../../PinList/PinList';
 // import Pin from '../Pin/Pin';
-import PinNew from '../Pin/PinNew';
-import UserContext from '../../contexts/UserContext';
+import PinNew from '../../Pin/PinNew';
+import UserContext from '../../../contexts/UserContext';
 // import PinSvg from '../../assets/pin.svg';
 
 export default function BaseMap() {

@@ -21,10 +21,8 @@ const postLocation = async (req, res) => {
       description: req.body.description,
       // rating: req.body.rating,
     };
-    console.log('here', body);
 
     const response = await Location.create(body);
-    console.log('now');
 
     res.status(201).send(response);
   } catch (e) {

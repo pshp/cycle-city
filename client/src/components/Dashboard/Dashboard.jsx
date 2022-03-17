@@ -5,9 +5,9 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import BaseMap from '../Maps/BaseMap';
-import Login from '../UserForm/Login';
-import Register from '../UserForm/Register';
+import BaseMap from '../Views/Maps/BaseMap';
+import Login from '../Views/Maps/UserForm/Login';
+import Register from '../Views/Maps/UserForm/Register';
 // import UserContext from '../../contexts/UserContext';
 
 export default function App() {

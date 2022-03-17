@@ -7,7 +7,16 @@ function PinList({ myMap }) {
 
   const allPins = locationsArray.map((singlePin) => (
     <React.Fragment key={singlePin._id}>
-      <Pin isActive myMap={myMap} pinId={singlePin._id} />
+      <Pin
+        isActive
+        myMap={myMap}
+        pinId={singlePin._id}
+        desc={singlePin.description}
+        title={singlePin.title}
+        username={singlePin.username}
+        lat={singlePin.latitude}
+        lng={singlePin.longitude}
+      />
     </React.Fragment>
 
   ));

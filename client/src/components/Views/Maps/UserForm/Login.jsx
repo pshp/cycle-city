@@ -1,35 +1,35 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './UserForm.css';
 import { Link } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
-import FormInput from '../FormInput/FormInput';
-import SubmitButton from '../Buttons/SubmitButton';
-import { registerUser } from '../../services/api-service';
+import FormInput from '../../../FormInput/FormInput';
+import SubmitButton from '../../../Buttons/SubmitButton';
+import { loginUser } from '../../../../services/api-service';
+import UserContext from '../../../../contexts/UserContext';
 
-export default function Register() {
+export default function Login() {
   const [correct, setCorrect] = useState(false);
   const [error, setError] = useState(false);
+  const { handleLoginSubmit } = useContext(UserContext);
 
   const methods = useForm();
 
   const onSubmit = (data) => {
     const body = {
-      firstName: data.firstName,
-      lastName: data.firstName,
       email: data.email,
       password: data.password,
     };
 
-    registerUser(body)
+    loginUser(body)
       .then((res) => {
-        console.log(res);
         if (res.error) throw new Error(res.error);
         setCorrect(true);
         setError(false);
+        handleLoginSubmit(res.data.email);
       })
       .catch((err) => {
-        console.log('ERROR', err);
+        console.log(err);
         setCorrect(false);
         setError(true);
       });
@@ -45,19 +45,7 @@ export default function Register() {
           onSubmit={methods.handleSubmit(onSubmit)}
         >
 
-          <h2>Sign up</h2>
-
-          <FormInput
-            id="firstName"
-            label="First name *"
-            type="text"
-          />
-
-          <FormInput
-            id="lastName"
-            label="Last name *"
-            type="text"
-          />
+          <h2>Log in</h2>
 
           <FormInput
             id="email"
@@ -71,16 +59,16 @@ export default function Register() {
             type="password"
           />
 
-          <SubmitButton type="submit" text="Sign up" />
-          {correct && <p className="correct">Account created. Please log in</p>}
-          {error && <p className="error">Something went wrong...</p>}
+          <SubmitButton type="submit" text="Log in" />
+          {correct && <p className="correct">Success</p>}
+          {error && <p className="error">Wrong username or password</p>}
         </form>
       </FormProvider>
 
       <p>
-        Already have an account?
+        Don&apos;t have an account?
         {' '}
-        <Link className="link" to="/login">Log in</Link>
+        <Link className="link" to="/register">Sign up</Link>
       </p>
     </div>
   );

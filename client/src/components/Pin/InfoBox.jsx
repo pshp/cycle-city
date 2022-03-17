@@ -45,7 +45,7 @@ export default function InfoBoxEdit({ title, description }) {
         value={thisDesc}
         onChange={onDescChange}
       />
-
+    </div>
 
   );
 }
