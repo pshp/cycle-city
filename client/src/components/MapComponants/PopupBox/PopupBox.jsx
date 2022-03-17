@@ -12,36 +12,36 @@ export default function PopupBox({
   title,
   desc,
   username,
-  handleDelete,
-  handleEdit,
 }) {
-  const handleClose = () => {
+  const { handleDeletePin, handleEditPin } = useContext(UserContext);
+
+  const handleClosePin = () => {
     myMap.closePopup();
   };
+
   return (
     <div className="popup-box">
       <div className="popup-btns">
         <div
           className="popup-btn popup-close-btn"
-          onClick={handleClose}
+          onClick={handleClosePin}
         >
           ✕
         </div>
 
         <div
           className="popup-btn popup-edit-btn"
-          onClick={handleClose}
+          onClick={(e) => handleEditPin(pinId)}
         >
-          <img className='icon-image' src={EditIcon} />
+          <img alt="edit" className="icon-image" src={EditIcon} />
         </div>
 
         <div
           className="popup-btn popup-delete-btn"
-          onClick={handleDelete}
+          onClick={(e) => handleDeletePin(pinId)}
         >
-          <img className='icon-image' src={DeleteIcon} />
+          <img alt="delete" className="icon-image" src={DeleteIcon} />
         </div>
-
 
       </div>
       <p className="infobox-label">Title</p>

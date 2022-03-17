@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Dashboard from './components/Dashboard/Dashboard';
 import UserContext from './contexts/UserContext';
-import { getLocations, postLocation } from './services/api-service';
+import { getLocations, postLocation, deleteLocation } from './services/api-service';
 
 export default function App() {
   const userStorage = window.localStorage;
@@ -67,9 +67,15 @@ export default function App() {
       .catch((error) => console.log(error));
   };
 
-  const handleDeletePin = () => {
-
+  const handleDeletePin = (pinId) => {
+    deleteLocation(pinId)
+      .then(() => {
+        const newLocations = locationsArray.filter((el) => el._id !== pinId);
+        setLocationsArray(newLocations);
+      })
+      .catch((e) => console.log(e));
   };
+
   const handleEditPin = () => {
 
   };
