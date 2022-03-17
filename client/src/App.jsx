@@ -14,7 +14,7 @@ export default function App() {
   const [newPin, setNewPin] = useState(null);
   const [newPinLat, setNewPinLat] = useState(null);
   const [newPinLng, setNewPinLng] = useState(null);
-
+  const [newPinId, setNewPinId] = useState(null);
   useEffect(() => {
     getLocations()
       .then((locations) => {
@@ -23,9 +23,9 @@ export default function App() {
       .catch((e) => console.log(e));
   }, []);
 
-  useEffect(() => {
-    console.log(locationsArray);
-  }, [locationsArray]);
+  // useEffect(() => {
+  //   console.log(locationsArray);
+  // }, [locationsArray]);
 
   const handleLoginSubmit = (username) => {
     userStorage.setItem('user', username);
@@ -57,12 +57,11 @@ export default function App() {
       latitude: newPinLat,
       longitude: newPinLng,
     };
-    console.log(newLocationInput);
     postLocation(newLocationInput)
       .then((location) => {
-        console.log(location);
         setLocationsArray((currLocations) => [...currLocations, location]);
         setNewPin(false);
+        setNewPinId(location._id);
       })
       .catch((error) => console.log(error));
   };
@@ -78,7 +77,8 @@ export default function App() {
     currentUser,
     newPinLat,
     newPinLng,
-  }), [currentUser, locationsArray, newPin, newPinLat, newPinLng]);
+    newPinId,
+  }), [newPinId, currentUser, locationsArray, newPin, newPinLat, newPinLng]);
 
   return (
     <UserContext.Provider value={context}>

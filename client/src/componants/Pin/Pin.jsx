@@ -1,10 +1,21 @@
-import React, { useContext } from 'react';
+import React, {
+  useContext, useState, useRef, useEffect,
+} from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import UserContext from '../../contexts/UserContext';
 
-export default function Pin({ pinId, cancelNewPin }) {
-  const { locationsArray } = useContext(UserContext);
+export default function Pin({ pinId, myMap, isActive }) {
+
+  const { locationsArray, newPinId } = useContext(UserContext);
+  const [refReady, setRefReady] = useState(false);
+  const popupRef = useRef();
+
+  useEffect(() => {
+    if (refReady && isActive && newPinId === pinId) {
+      popupRef.current.openOn(myMap);
+    }
+  }, [isActive, refReady, myMap, newPinId]);
 
   const {
     title, description, latitude, longitude, username,
@@ -30,7 +41,12 @@ export default function Pin({ pinId, cancelNewPin }) {
 
   return (
     <Marker icon={myIcon} position={position}>
-      <Popup cancelNewPin={cancelNewPin} pinId={pinId}>
+      <Popup
+        ref={(r) => {
+          popupRef.current = r;
+          setRefReady(true);
+        }}
+      >
         {title}
         <br />
         {description}

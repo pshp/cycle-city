@@ -33,11 +33,11 @@ export default function BaseMap() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <PinList />
+      <PinList myMap={myMap} />
       {newPin && (
         <PinNew
           isActive
-          map={myMap}
+          myMap={myMap}
           lat={newPinLat}
           lng={newPinLng}
         />

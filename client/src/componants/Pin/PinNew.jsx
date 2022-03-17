@@ -4,16 +4,16 @@ import L from 'leaflet';
 import InfoBoxEdit from './InfoBoxEdit';
 
 export default function PinNew({
-  map, isActive, lat, lng,
+  myMap, isActive, lat, lng,
 }) {
   const [refReady, setRefReady] = useState(false);
   const popupRef = useRef();
 
   useEffect(() => {
     if (refReady && isActive) {
-      popupRef.current.openOn(map);
+      popupRef.current.openOn(myMap);
     }
-  }, [isActive, refReady, map]);
+  }, [isActive, refReady, myMap]);
 
   const position = [lat, lng];
   // const myCustomColour = '#583470';

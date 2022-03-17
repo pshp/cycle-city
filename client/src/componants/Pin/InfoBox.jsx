@@ -19,7 +19,7 @@ export default function InfoBoxEdit({ title, description }) {
   };
 
   return (
-    <form
+    <div
       className="edit-location-popup"
       onSubmit={(e) => handleSubmitNewPin(e, thisTitle, thisDesc)}
     >
@@ -28,7 +28,7 @@ export default function InfoBoxEdit({ title, description }) {
         onClick={handleCancelNewPin}
       />
       <p className="label">Title</p>
-      <input
+      <p
         autoFocus
         className="location-input"
         name="title"
@@ -38,19 +38,14 @@ export default function InfoBoxEdit({ title, description }) {
 
       />
       <p className="label">Description</p>
-      <textarea
+      <p
         className="location-input"
         name="description"
         // placeholder="Say something about this place..."
         value={thisDesc}
         onChange={onDescChange}
       />
-      <button type="submit" className="small-submit-btn">
-        Add Pin
-        {/* {editPlace && 'Save Changes'}
-        {!editPlace && 'Add Pin'} */}
-      </button>
-    </form>
+
 
   );
 }

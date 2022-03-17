@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import Pin from '../Pin/Pin';
 import UserContext from '../../contexts/UserContext';
 
-function PinList() {
+function PinList({ myMap }) {
   const { locationsArray } = useContext(UserContext);
 
   const allPins = locationsArray.map((singlePin) => (
     <React.Fragment key={singlePin._id}>
-      <Pin pinId={singlePin._id} />
+      <Pin isActive myMap={myMap} pinId={singlePin._id} />
     </React.Fragment>
 
   ));
