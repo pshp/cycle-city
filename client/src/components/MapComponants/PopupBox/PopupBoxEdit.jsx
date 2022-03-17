@@ -23,10 +23,12 @@ export default function PopupBoxEdit({ title, description }) {
       className="edit-location-popup"
       onSubmit={(e) => handleSubmitNewPin(e, thisTitle, thisDesc)}
     >
-      <CloseIcon
-        className="icon-btns icon-btn close-btn"
+      <div
+        className="popup-btns popup-btn popup-close-btn"
         onClick={handleCancelNewPin}
-      />
+      >
+        ✕
+      </div>
       <p className="infobox-label">Title</p>
       <input
         autoFocus

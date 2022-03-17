@@ -1,4 +1,6 @@
+.popup-box {
 
+}
 .edit-location-popup {
   display: flex;
   flex-direction: column;
@@ -64,4 +66,39 @@
 
 .small-submit-btn:hover {
   opacity: 0.5;
+}
+
+.popup-btns {
+display: flex;
+flex-direction: column;
+position: absolute;
+right: -35px;
+top: 3px;
+
+
+}
+
+.popup-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 1px 3px 1px rgb(0 0 0 / 15%);
+  margin:2px;
+  cursor: pointer;
+}
+
+.popup-close-btn{
+  background-color: #FFA600;
+  font-size: 15px;
+}
+
+.popup-edit-btn, .popup-delete-btn {
+  background-color: white;
+}
+
+.icon-image {
+  height:16px;
 }
