@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useContext, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import UserContext from '../../contexts/UserContext';
-import './Pin.css';
+import UserContext from '../../../contexts/UserContext';
+import './PopupBox.css';
 
 export default function InfoBoxEdit({ title, description }) {
   const { handleSubmitNewPin, handleCancelNewPin } = useContext(UserContext);
@@ -19,7 +19,7 @@ export default function InfoBoxEdit({ title, description }) {
   };
 
   return (
-    <div
+    <form
       className="edit-location-popup"
       onSubmit={(e) => handleSubmitNewPin(e, thisTitle, thisDesc)}
     >
@@ -28,7 +28,7 @@ export default function InfoBoxEdit({ title, description }) {
         onClick={handleCancelNewPin}
       />
       <p className="label">Title</p>
-      <p
+      <input
         autoFocus
         className="location-input"
         name="title"
@@ -38,14 +38,19 @@ export default function InfoBoxEdit({ title, description }) {
 
       />
       <p className="label">Description</p>
-      <p
+      <textarea
         className="location-input"
         name="description"
         // placeholder="Say something about this place..."
         value={thisDesc}
         onChange={onDescChange}
       />
-    </div>
+      <button type="submit" className="small-submit-btn">
+        Add Pin
+        {/* {editPlace && 'Save Changes'}
+        {!editPlace && 'Add Pin'} */}
+      </button>
+    </form>
 
   );
 }

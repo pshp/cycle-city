@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import InfoBoxEdit from './InfoBoxEdit';
+import InfoBoxEdit from '../PopupBox/PopupBoxEdit';
 
 export default function PinNew({
   myMap, isActive, lat, lng,
@@ -30,7 +30,7 @@ export default function PinNew({
       c-34.38,0-62.244-27.863-62.244-62.244c0-34.381,27.864-62.244,62.244-62.244c34.38,0,62.244,27.863,62.244,62.244
       C308.476,197.107,280.612,224.97,246.232,224.97z"/>
     </svg>`,
-    className: 'leaflet-data-marker',
+    className: 'marker-pin-new',
   });
 
   return (

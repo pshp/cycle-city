@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Pin from '../Pin/Pin';
-import UserContext from '../../contexts/UserContext';
+import UserContext from '../../../contexts/UserContext';
 
 function PinList({ myMap }) {
   const { locationsArray } = useContext(UserContext);

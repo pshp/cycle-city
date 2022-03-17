@@ -3,10 +3,10 @@ import React, { useState, useContext } from 'react';
 import './UserForm.css';
 import { Link } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
-import FormInput from '../../../FormInput/FormInput';
-import SubmitButton from '../../../Buttons/SubmitButton';
-import { loginUser } from '../../../../services/api-service';
-import UserContext from '../../../../contexts/UserContext';
+import FormInput from '../../FormComponants/FormInput';
+import SubmitButton from '../../Buttons/SubmitButton';
+import { loginUser } from '../../../services/api-service';
+import UserContext from '../../../contexts/UserContext';
 
 export default function Login() {
   const [correct, setCorrect] = useState(false);

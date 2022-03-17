@@ -3,7 +3,8 @@ import React, {
 } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import UserContext from '../../contexts/UserContext';
+import UserContext from '../../../contexts/UserContext';
+import './Pin.css';
 
 function Pin({
   title,
@@ -40,7 +41,7 @@ function Pin({
       c-34.38,0-62.244-27.863-62.244-62.244c0-34.381,27.864-62.244,62.244-62.244c34.38,0,62.244,27.863,62.244,62.244
       C308.476,197.107,280.612,224.97,246.232,224.97z"/>
     </svg>`,
-    className: 'leaflet-data-marker',
+    className: 'marker-pin',
   });
 
   return (
@@ -56,6 +57,7 @@ function Pin({
           setRefReady(true);
         }}
       >
+
         {title}
         <br />
         {desc}
