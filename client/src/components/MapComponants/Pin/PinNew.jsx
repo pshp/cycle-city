@@ -37,7 +37,6 @@ export default function PinNew({
       position={position}
     >
       <Popup
-        className="customPopup"
         closeButton={false}
         ref={(r) => {
           popupRef.current = r;

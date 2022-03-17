@@ -5,18 +5,32 @@ import UserContext from '../../../contexts/UserContext';
 import './PopupBox.css';
 
 export default function PopupBox({
-  pinId, title, desc, username,
+  myMap,
+  pinId,
+  title,
+  desc,
+  username,
+  handleDelete,
+  handleEdit,
 }) {
+  const handleClose = () => {
+    myMap.closePopup();
+  };
   return (
     <div>
-      {/* <CloseIcon
+      <CloseIcon
         className="icon-btns icon-btn close-btn"
-        onClick={handleCancelNewPin}
-      /> */}
+        onClick={handleClose}
+      />
       <p className="infobox-label">Title</p>
       <p>{title}</p>
       <p className="infobox-label">Description</p>
       <p>{desc}</p>
+      <p className="info-username">
+        Created by
+        {' '}
+        <b>{username}</b>
+      </p>
     </div>
 
   );

@@ -25,9 +25,11 @@ function Pin({
 
   useEffect(() => {
     if (refReady && isActive && newPinId === pinId) {
+      console.log(popupRef.current);
       popupRef.current.openOn(myMap);
     }
   }, [isActive, refReady, myMap, newPinId]);
+
 
   const position = [lat, lng];
   // const myCustomColour = '#583470';
@@ -53,15 +55,14 @@ function Pin({
       position={position}
     >
       <Popup
-        className="customPopup"
-        closeButton
+        closeButton={false}
         ref={(r) => {
           popupRef.current = r;
           setRefReady(true);
         }}
       >
-
         <PopupBox
+          myMap={myMap}
           pinId={pinId}
           title={title}
           desc={desc}
