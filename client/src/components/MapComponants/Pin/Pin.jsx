@@ -21,7 +21,7 @@ function Pin({
   isActive,
 }) {
   const {
-    newPinId, editPin, handleCancelNewPin, handleCancelEditPin,
+    newPinId, editPin, handleCancelNewPin, handleCancelEditPin, handleDragPin,
   } = useContext(UserContext);
   const [refReady, setRefReady] = useState(false);
   const popupRef = useRef();
@@ -52,10 +52,14 @@ function Pin({
     <Marker
       icon={myIcon}
       position={position}
+      draggable
       eventHandlers={{
         click: () => {
           handleCancelEditPin();
           handleCancelNewPin();
+        },
+        dragend: (e) => {
+          handleDragPin(pinId, e.target._latlng.lat, e.target._latlng.lng);
         },
       }}
     >

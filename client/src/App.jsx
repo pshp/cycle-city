@@ -113,6 +113,26 @@ export default function App() {
       .catch((e) => console.log(e));
   };
 
+  const handleDragPin = (pinId, lat, lng) => {
+    const body = {
+      latitude: lat,
+      longitude: lng,
+    };
+    editLocation(pinId, body)
+      .then(() => {
+        const newLocations = locationsArray.map((el) => {
+          const newEl = el;
+          if (newEl._id === pinId) {
+            newEl.latitude = lat;
+            newEl.longitude = lng;
+          }
+          return newEl;
+        });
+        setLocationsArray(newLocations);
+      })
+      .catch((e) => console.log(e));
+  };
+
   const context = useMemo(() => ({
 
     handleLoginSubmit,
@@ -127,6 +147,7 @@ export default function App() {
     setLoginDisplayed,
     loginViewMounted,
     loginViewUnmounted,
+    handleDragPin,
     locationsArray,
     newPin,
     loginDisplayed,
