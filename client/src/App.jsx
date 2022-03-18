@@ -165,6 +165,7 @@ export default function App() {
     newPinLng,
     newPinId,
     editPin,
+    userStorage,
   ]);
 
   return (

@@ -21,9 +21,16 @@ function Pin({
   isActive,
 }) {
   const {
-    newPinId, editPin, handleCancelNewPin, handleCancelEditPin, handleDragPin,
+    newPinId,
+    editPin,
+    handleCancelNewPin,
+    handleCancelEditPin,
+    handleDragPin,
+    currentUser,
+
   } = useContext(UserContext);
   const [refReady, setRefReady] = useState(false);
+
   const popupRef = useRef();
 
   useEffect(() => {
@@ -33,6 +40,9 @@ function Pin({
   }, [isActive, refReady, myMap, newPinId]);
 
   const position = [lat, lng];
+
+  // const isDraggable = !!currentUser;
+  // console.log(currentUser);
 
   const myIcon = L.divIcon({
     iconSize: [26, 26],
@@ -52,7 +62,7 @@ function Pin({
     <Marker
       icon={myIcon}
       position={position}
-      draggable
+      draggable={!!currentUser}
       eventHandlers={{
         click: () => {
           handleCancelEditPin();
