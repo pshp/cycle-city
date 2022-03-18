@@ -17,6 +17,7 @@ export default function App() {
   const [newPinLng, setNewPinLng] = useState(null);
   const [newPinId, setNewPinId] = useState(null);
   const [editPin, setEditPin] = useState(null);
+  const [loginDisplayed, setLoginDisplayed] = useState(false);
 
   // remove new pin id
   useEffect(() => {
@@ -38,6 +39,7 @@ export default function App() {
   };
 
   const handleAddNewPin = (e) => {
+    if (!currentUser) return;
     setNewPin(false);
     setNewPinLng(e.latlng.lng);
     setNewPinLat(e.latlng.lat);
