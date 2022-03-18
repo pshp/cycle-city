@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
 import Dashboard from './components/Dashboard/Dashboard';
+import Navbar from './components/Navbar/Navbar';
 import UserContext from './contexts/UserContext';
 import {
   getLocations, postLocation, deleteLocation, editLocation,
@@ -36,6 +36,14 @@ export default function App() {
   const handleLogout = () => {
     localStorage.removeItem('user');
     setCurrentUser(null);
+  };
+
+  const loginViewMounted = () => {
+    setLoginDisplayed(true);
+  };
+
+  const loginViewUnmounted = () => {
+    setLoginDisplayed(false);
   };
 
   const handleAddNewPin = (e) => {
@@ -106,8 +114,7 @@ export default function App() {
   };
 
   const context = useMemo(() => ({
-    locationsArray,
-    newPin,
+
     handleLoginSubmit,
     handleLogout,
     handleAddNewPin,
@@ -117,12 +124,27 @@ export default function App() {
     handleEditPin,
     handleCancelEditPin,
     handleSubmitEditPin,
+    setLoginDisplayed,
+    loginViewMounted,
+    loginViewUnmounted,
+    locationsArray,
+    newPin,
+    loginDisplayed,
     currentUser,
     newPinLat,
     newPinLng,
     newPinId,
     editPin,
-  }), [editPin, newPinId, currentUser, locationsArray, newPin, newPinLat, newPinLng]);
+  }), [
+    locationsArray,
+    newPin,
+    loginDisplayed,
+    currentUser,
+    newPinLat,
+    newPinLng,
+    newPinId,
+    editPin,
+  ]);
 
   return (
     <UserContext.Provider value={context}>

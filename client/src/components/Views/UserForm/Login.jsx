@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './UserForm.css';
 import { Link } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -11,9 +11,17 @@ import UserContext from '../../../contexts/UserContext';
 export default function Login() {
   const [correct, setCorrect] = useState(false);
   const [error, setError] = useState(false);
-  const { handleLoginSubmit } = useContext(UserContext);
+  const { handleLoginSubmit, loginViewMounted, loginViewUnmounted } = useContext(UserContext);
 
   const methods = useForm();
+
+  useEffect(() => {
+    loginViewMounted();
+  }, []);
+
+  useEffect(() => () => {
+    loginViewUnmounted();
+  }, []);
 
   const onSubmit = (data) => {
     const body = {

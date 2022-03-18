@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import LoginRegBtn from '../Buttons/LoginRegBtn';
 import UserContext from '../../contexts/UserContext';
 
-export default function HamburgerMenu() {
-  const { currentUser, handleLogout } = useContext(UserContext);
+export default function Navbar() {
+  const { currentUser, handleLogout, loginDisplayed } = useContext(UserContext);
 
   return (
     <div className="Navbar">
@@ -22,18 +22,16 @@ export default function HamburgerMenu() {
       <div className="navbar-element" />
 
       <div className="navbar-element">
-        {!currentUser && (
-        <>
+        {!currentUser && !loginDisplayed && (
           <Link to="/login">
             <LoginRegBtn type="login" />
           </Link>
-
-          {/* <Link to="/register">
-            <LoginRegBtn type="register" />
-          </Link> */}
-        </>
         )}
-
+        { !currentUser && loginDisplayed && (
+          <Link to="/register">
+            <LoginRegBtn type="register" />
+          </Link>
+        )}
         {currentUser && (
         <Link to="/">
           <LogoutIcon onClick={handleLogout} className="navbar-icon" fontSize="large" />
