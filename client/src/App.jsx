@@ -4,18 +4,21 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Dashboard from './components/Dashboard/Dashboard';
 import UserContext from './contexts/UserContext';
-import { getLocations, postLocation, deleteLocation } from './services/api-service';
+import {
+  getLocations, postLocation, deleteLocation, editLocation,
+} from './services/api-service';
 
 export default function App() {
   const userStorage = window.localStorage;
   const [currentUser, setCurrentUser] = useState(null);
   const [locationsArray, setLocationsArray] = useState([]);
-
   const [newPin, setNewPin] = useState(null);
   const [newPinLat, setNewPinLat] = useState(null);
   const [newPinLng, setNewPinLng] = useState(null);
   const [newPinId, setNewPinId] = useState(null);
+  const [editPin, setEditPin] = useState(null);
 
+  // remove new pin id
   useEffect(() => {
     getLocations()
       .then((locations) => {
@@ -23,10 +26,6 @@ export default function App() {
       })
       .catch((e) => console.log(e));
   }, []);
-
-  // useEffect(() => {
-  //   console.log(locationsArray);
-  // }, [locationsArray]);
 
   const handleLoginSubmit = (username) => {
     userStorage.setItem('user', username);
@@ -49,8 +48,7 @@ export default function App() {
     setNewPin(false);
   };
 
-  const handleSubmitNewPin = (e, title, desc) => {
-    e.preventDefault();
+  const handleSubmitNewPin = (title, desc) => {
     const newLocationInput = {
       username: userStorage.user,
       title,
@@ -77,7 +75,32 @@ export default function App() {
   };
 
   const handleEditPin = () => {
+    setEditPin(true);
+  };
 
+  const handleCancelEditPin = () => {
+    setEditPin(false);
+  };
+
+  const handleSubmitEditPin = (pinId, title, desc) => {
+    const body = {
+      title,
+      description: desc,
+    };
+    editLocation(pinId, body)
+      .then(() => {
+        const newLocations = locationsArray.map((el) => {
+          const newEl = el;
+          if (newEl._id === pinId) {
+            newEl.title = title;
+            newEl.description = desc;
+          }
+          return newEl;
+        });
+        setLocationsArray(newLocations);
+        setEditPin(false);
+      })
+      .catch((e) => console.log(e));
   };
 
   const context = useMemo(() => ({
@@ -90,11 +113,14 @@ export default function App() {
     handleSubmitNewPin,
     handleDeletePin,
     handleEditPin,
+    handleCancelEditPin,
+    handleSubmitEditPin,
     currentUser,
     newPinLat,
     newPinLng,
     newPinId,
-  }), [newPinId, currentUser, locationsArray, newPin, newPinLat, newPinLng]);
+    editPin,
+  }), [editPin, newPinId, currentUser, locationsArray, newPin, newPinLat, newPinLng]);
 
   return (
     <UserContext.Provider value={context}>

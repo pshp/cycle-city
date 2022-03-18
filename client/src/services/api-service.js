@@ -23,7 +23,7 @@ export const deleteLocation = async (id) => fetch(`${baseUrl}locations/${id}`, {
   .then((res) => res.json())
   .catch((error) => console.log(error));
 
-export const editLocations = async (id, data) => fetch(`${baseUrl}locations/${id}`, {
+export const editLocation = async (id, data) => fetch(`${baseUrl}locations/${id}`, {
   method: 'PATCH',
   headers,
   body: JSON.stringify(data),

@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-autofocus */
-import React, { useContext, useState } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
+import React, { useContext } from 'react';
 import UserContext from '../../../contexts/UserContext';
 import './PopupBox.css';
 import EditIcon from '../../../assets/edit-icon.png';
@@ -25,20 +24,23 @@ export default function PopupBox({
         <div
           className="popup-btn popup-close-btn"
           onClick={handleClosePin}
+          aria-hidden="true"
         >
           ✕
         </div>
 
         <div
           className="popup-btn popup-edit-btn"
-          onClick={(e) => handleEditPin(pinId)}
+          onClick={() => handleEditPin(pinId)}
+          aria-hidden="true"
         >
           <img alt="edit" className="icon-image" src={EditIcon} />
         </div>
 
         <div
           className="popup-btn popup-delete-btn"
-          onClick={(e) => handleDeletePin(pinId)}
+          onClick={() => handleDeletePin(pinId)}
+          aria-hidden="true"
         >
           <img alt="delete" className="icon-image" src={DeleteIcon} />
         </div>

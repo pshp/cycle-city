@@ -1,14 +1,18 @@
-/* eslint-disable jsx-a11y/no-autofocus */
 import React, { useContext, useState } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
 import UserContext from '../../../contexts/UserContext';
 import './PopupBox.css';
 
-export default function PopupBoxEdit({ title, description }) {
-  const { handleSubmitNewPin, handleCancelNewPin } = useContext(UserContext);
+export default function PopupBoxEdit({ pinId, title, desc }) {
+  const {
+    editPin,
+    handleCancelNewPin,
+    handleSubmitNewPin,
+    handleCancelEditPin,
+    handleSubmitEditPin,
+  } = useContext(UserContext);
 
   const [thisTitle, setThisTitle] = useState(title || '');
-  const [thisDesc, setThisDesc] = useState(description || '');
+  const [thisDesc, setThisDesc] = useState(desc || '');
 
   const onTitleChange = (e) => {
     setThisTitle(e.target.value);
@@ -18,23 +22,36 @@ export default function PopupBoxEdit({ title, description }) {
     setThisDesc(e.target.value);
   };
 
+  const routeSumbit = (e) => {
+    e.preventDefault();
+    if (editPin) handleSubmitEditPin(pinId, thisTitle, thisDesc);
+    else handleSubmitNewPin(thisTitle, thisDesc);
+  };
+
+  const routeCancel = (e) => {
+    e.preventDefault();
+    if (editPin) handleCancelEditPin();
+    else handleCancelNewPin();
+  };
+
   return (
     <form
       className="edit-location-popup"
-      onSubmit={(e) => handleSubmitNewPin(e, thisTitle, thisDesc)}
+      onSubmit={routeSumbit}
     >
       <div
         className="popup-btns popup-btn popup-close-btn"
-        onClick={handleCancelNewPin}
+        onClick={routeCancel}
+        aria-hidden="true"
       >
         ✕
       </div>
       <p className="infobox-label">Title</p>
       <input
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         className="location-input"
         name="title"
-        // placeholder="Enter a title..."
         value={thisTitle}
         onChange={onTitleChange}
 
@@ -43,14 +60,12 @@ export default function PopupBoxEdit({ title, description }) {
       <textarea
         className="location-input"
         name="description"
-        // placeholder="Say something about this place..."
         value={thisDesc}
         onChange={onDescChange}
       />
       <button type="submit" className="small-submit-btn">
-        Add Pin
-        {/* {editPlace && 'Save Changes'}
-        {!editPlace && 'Add Pin'} */}
+        {editPin && 'Save Changes'}
+        {!editPin && 'Add Pin'}
       </button>
     </form>
 

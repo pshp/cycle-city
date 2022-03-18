@@ -1,11 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+  useState, useRef, useEffect, useContext,
+} from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import PopupBoxEdit from '../PopupBox/PopupBoxEdit';
+import UserContext from '../../../contexts/UserContext';
 
 export default function PinNew({
   myMap, isActive, lat, lng,
 }) {
+  const { handleCancelNewPin } = useContext(UserContext);
   const [refReady, setRefReady] = useState(false);
   const popupRef = useRef();
 
@@ -15,6 +19,7 @@ export default function PinNew({
     }
   }, [isActive, refReady, myMap]);
 
+  useEffect(() => () => { handleCancelNewPin(); }, []);
   const position = [lat, lng];
 
   const myIcon = L.divIcon({

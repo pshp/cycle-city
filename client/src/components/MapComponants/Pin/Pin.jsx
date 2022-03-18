@@ -1,7 +1,9 @@
 import React, {
   useContext, useState, useRef, useEffect,
 } from 'react';
-import { Marker, Popup } from 'react-leaflet';
+import {
+  Marker, Popup,
+} from 'react-leaflet';
 import L from 'leaflet';
 import UserContext from '../../../contexts/UserContext';
 import './Pin.css';
@@ -14,26 +16,23 @@ function Pin({
   username,
   lat,
   lng,
-
   pinId,
   myMap,
   isActive,
 }) {
-  const { newPinId } = useContext(UserContext);
+  const {
+    newPinId, editPin, handleCancelNewPin, handleCancelEditPin,
+  } = useContext(UserContext);
   const [refReady, setRefReady] = useState(false);
   const popupRef = useRef();
 
   useEffect(() => {
     if (refReady && isActive && newPinId === pinId) {
-      console.log(popupRef.current);
       popupRef.current.openOn(myMap);
     }
   }, [isActive, refReady, myMap, newPinId]);
 
-
   const position = [lat, lng];
-  // const myCustomColour = '#583470';
-  // const markerHtmlStyles = `background-color: ${myCustomColour};`;
 
   const myIcon = L.divIcon({
     iconSize: [26, 26],
@@ -53,6 +52,12 @@ function Pin({
     <Marker
       icon={myIcon}
       position={position}
+      eventHandlers={{
+        click: () => {
+          handleCancelEditPin();
+          handleCancelNewPin();
+        },
+      }}
     >
       <Popup
         closeButton={false}
@@ -60,7 +65,9 @@ function Pin({
           popupRef.current = r;
           setRefReady(true);
         }}
+
       >
+        {!editPin && (
         <PopupBox
           myMap={myMap}
           pinId={pinId}
@@ -68,6 +75,15 @@ function Pin({
           desc={desc}
           username={username}
         />
+        )}
+        {editPin && (
+        <PopupBoxEdit
+          myMap={myMap}
+          pinId={pinId}
+          title={title}
+          desc={desc}
+        />
+        )}
       </Popup>
     </Marker>
   );
