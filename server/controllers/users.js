@@ -1,6 +1,28 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
+const getUsers = async (req, res) => {
+  try {
+    // get all loctions
+    const users = await User.find();
+    res.status(200).send(users);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+};
+
+const getUser = async (req, res) => {
+  try {
+    // get all loctions
+    const users = await User.findOne(
+      { _id: req.params.id },
+    );
+    res.status(200).send(users);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+};
+
 const login = async (req, res) => {
   try {
     // validate email
@@ -18,7 +40,12 @@ const login = async (req, res) => {
       return res.status(400).send({ error: 'Wrong email or password' });
     }
 
-    return res.status(200).send({ data: { email: validUser.email } });
+    return res.status(200).send({
+      data: {
+        email: validUser.email,
+        id: validUser._id,
+      },
+    });
   } catch (e) {
     return res.status(500).send({ error: e._message });
   }
@@ -55,4 +82,6 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { login, register };
+module.exports = {
+  login, register, getUsers, getUser,
+};

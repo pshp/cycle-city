@@ -6,6 +6,9 @@ const userControllers = require('./controllers/users');
 
 router.post('/users/register', userControllers.register);
 router.post('/users/login', userControllers.login);
+router.get('/users/', userControllers.getUsers);
+router.get('/users/:id', userControllers.getUser);
+
 // router.post("/users/logout", controllers.logout);
 
 router.get('/locations', locationControllers.getLocations);
