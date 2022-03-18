@@ -9,7 +9,7 @@ import UserContext from '../../../contexts/UserContext';
 export default function PinNew({
   myMap, isActive, lat, lng,
 }) {
-  const { handleCancelNewPin } = useContext(UserContext);
+  const { handleCancelNewPin, handleCancelEditPin } = useContext(UserContext);
   const [refReady, setRefReady] = useState(false);
   const popupRef = useRef();
 
@@ -19,7 +19,10 @@ export default function PinNew({
     }
   }, [isActive, refReady, myMap]);
 
+  useEffect(() => { handleCancelEditPin(); }, []);
+
   useEffect(() => () => { handleCancelNewPin(); }, []);
+
   const position = [lat, lng];
 
   const myIcon = L.divIcon({
