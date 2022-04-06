@@ -4,7 +4,7 @@ import './FormInput.css';
 import { useFormContext } from 'react-hook-form';
 
 export default function FormInput({ id, type, label }) {
-  const { register } = useFormContext(); // retrieve all hook methods
+  const { register } = useFormContext();
 
   return (
     <label className="form-input" htmlFor={id}>

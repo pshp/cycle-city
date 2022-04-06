@@ -10,7 +10,7 @@ import {
 
 export default function App() {
   const userStorage = window.localStorage;
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState('Test user');
   const [locationsArray, setLocationsArray] = useState([]);
   const [newPin, setNewPin] = useState(null);
   const [newPinLat, setNewPinLat] = useState(null);
@@ -60,7 +60,7 @@ export default function App() {
 
   const handleSubmitNewPin = (title, desc) => {
     const newLocationInput = {
-      username: userStorage.user,
+      username: currentUser,
       title,
       description: desc,
       latitude: newPinLat,
